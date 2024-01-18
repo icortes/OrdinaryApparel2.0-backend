@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   headers: {
-    'Access-Control-Allow-Origin': ['https://localhost:5502'],
+    'Access-Control-Allow-Origin': ['http://localhost:5502'],
   },
 
   // async headers() {
