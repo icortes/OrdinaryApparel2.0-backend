@@ -1,7 +1,7 @@
 import { Product } from '@/lib/interfaces';
 import prisma from '../../../../prisma/prisma';
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
     const products: Product[] = await prisma.product.findMany({});
 
