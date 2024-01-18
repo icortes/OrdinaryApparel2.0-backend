@@ -27,3 +27,24 @@ export async function GET(request: Request, { params }: { params: { id: number }
     return Response.json({ error });
   }
 }
+
+//update description
+export async function PUT(request: Request, { params }: { params: { id: number } }) {
+  try {
+    const body = await request.json();
+    const product: Product = await prisma.product.update({
+      where: {
+        id: params.id,
+      },
+      data: {
+        ...body,
+      },
+    });
+    const formattedProduct = { ...product, id: Number(product.id) };
+    console.log('updated product: ', formattedProduct);
+
+    return Response.json({ product: formattedProduct });
+  } catch (error) {
+    return Response.json({ error });
+  }
+}
