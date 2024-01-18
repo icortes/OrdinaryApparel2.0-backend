@@ -31,10 +31,26 @@ app.get('/api/products', async (req: Request, res: Response) => {
   }
 });
 
+//GET product by id
+app.get('/api/product/:id', async (req: Request, res: Response) => {
+  try {
+    const id: number = Number(req.params.id);
+    const product: Product | null = await prisma.product.findUnique({
+      where: { id },
+    });
+    if (product) {
+      const formattedProduct = { ...product, id: Number(product.id) };
+      res.status(200).send({ product: formattedProduct });
+    } else {
+      res.status(404).send({ error: 404, message: 'Product not found!' });
+    }
+  } catch (error) {}
+});
+
 //POST Product
 app.post('/api/product', async (req: Request, res: Response) => {
   try {
-    const body = req.body;
+    const body: Product = req.body;
     const product: Product = await prisma.product.create({
       data: { ...body },
     });
