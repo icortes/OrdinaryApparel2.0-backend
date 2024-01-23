@@ -7,16 +7,18 @@ export async function GET(request: Request, { params }: { params: { id: number }
       where: {
         id: params.id,
       },
+      include: {
+        comments: true,
+      },
     });
     if (product) {
       const formattedProduct = { ...product, id: Number(product.id) };
       console.log('product: ', product);
-      return Response.json({ products: formattedProduct });
+      return Response.json({ product: formattedProduct });
     } else {
       return Response.json(
         {
           message: 'Product not found!',
-          status: 404,
         },
         {
           status: 404,

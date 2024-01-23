@@ -8,3 +8,10 @@ export interface Product {
   createdAt: Date;
   updatedAt: Date;
 }
+
+export interface User {
+  id: bigint;
+  name: String;
+  email: String;
+  password: String;
+}

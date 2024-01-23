@@ -26,5 +26,12 @@ model Product {
   updatedAt   DateTime  @updatedAt
   description String?
   image       String
-  Comment     Comment[]
+  comments     Comment[]
+}
+
+model User {
+  id       BigInt @id @default(sequence())
+  name     String
+  email    String @unique
+  password String
 }
