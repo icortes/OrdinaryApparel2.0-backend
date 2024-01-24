@@ -13,7 +13,11 @@ export async function GET(request: Request, { params }: { params: { id: number }
     });
     if (product) {
       const formattedProduct = { ...product, id: Number(product.id) };
-      console.log('product: ', product);
+      formattedProduct.comments?.map((comment) => {
+        comment.id = Number(comment.id);
+        comment.productId = Number(comment.productId);
+      });
+      console.log('product: ', formattedProduct);
       return Response.json({ product: formattedProduct });
     } else {
       return Response.json(

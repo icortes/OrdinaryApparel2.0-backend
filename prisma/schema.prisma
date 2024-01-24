@@ -13,7 +13,7 @@ model Comment {
   name      String
   productId BigInt?
   createdAt DateTime @default(now())
-  updatedAt DateTime
+  updatedAt DateTime @updatedAt
   Product   Product? @relation(fields: [productId], references: [id])
 }
 
@@ -26,7 +26,7 @@ model Product {
   updatedAt   DateTime  @updatedAt
   description String?
   image       String
-  comments     Comment[]
+  comments    Comment[]
 }
 
 model User {
